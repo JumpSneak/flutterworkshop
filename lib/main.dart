@@ -60,7 +60,10 @@ class _MyHomePageState extends State<MyHomePage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              NumberValue(name: "test1", function: (a) {return a;}, counter: _counter),
+              NumberValue(name: "Dezimal", function: (a) {return a.toString();}, counter: _counter),
+              NumberValue(name: "Hex", function: (a) {return a.toRadixString(16).toUpperCase();}, counter: _counter),
+              NumberValue(name: "Oct", function: (a) {return a.toRadixString(8);}, counter: _counter),
+              NumberValue(name: "Binary", function: (a) {return a.toRadixString(2);}, counter: _counter),
               const Text(
                 'Decimal',
               ),
@@ -141,8 +144,8 @@ class NumberValue extends StatelessWidget {
             Icons.onetwothree,
           color: Colors.black,
         ),
-        Text("Test"),
-        Text(counter.toString())
+        Text(name),
+        Text(function(counter))
       ],
     );
   }
