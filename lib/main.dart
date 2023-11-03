@@ -91,34 +91,7 @@ void _resetCounter() {
                     return a.toRadixString(2);
                   },
                   counter: _counter),
-              const Text(
-                'Decimal',
-              ),
-              Text(
-                '$_counter',
-                style: Theme.of(context).textTheme.headlineMedium,
-              ),
-              const Text(
-                'Binary',
-              ),
-              Text(
-                _counter.toRadixString(2),
-                style: Theme.of(context).textTheme.headlineMedium,
-              ),
-              const Text(
-                'Hexadecimal',
-              ),
-              Text(
-                _counter.toRadixString(16).toUpperCase(),
-                style: Theme.of(context).textTheme.headlineMedium,
-              ),
-              const Text(
-                'Octal',
-              ),
-              Text(
-                _counter.toRadixString(8).toUpperCase(),
-                style: Theme.of(context).textTheme.headlineMedium,
-              ),
+
             ],
           ),
         ),
