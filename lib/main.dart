@@ -49,40 +49,42 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
       ),
-      body: Center(
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'Decimal',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-            const Text(
-              'Binary',
-            ),
-            Text(
-                _counter.toRadixString(2),
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-            const Text(
-              'Hexadecimal',
-            ),
-            Text(
-                _counter.toRadixString(16).toUpperCase(),
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-            const Text(
-              'Octal',
-            ),
-            Text(
-                _counter.toRadixString(8).toUpperCase(),
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
-        ),
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+
+              const Text(
+                'Decimal',
+              ),
+              Text(
+                '$_counter',
+                style: Theme.of(context).textTheme.headlineMedium,
+              ),
+              const Text(
+                'Binary',
+              ),
+              Text(
+                  _counter.toRadixString(2),
+                style: Theme.of(context).textTheme.headlineMedium,
+              ),
+              const Text(
+                'Hexadecimal',
+              ),
+              Text(
+                  _counter.toRadixString(16).toUpperCase(),
+                style: Theme.of(context).textTheme.headlineMedium,
+              ),
+              const Text(
+                'Octal',
+              ),
+              Text(
+                  _counter.toRadixString(8).toUpperCase(),
+                style: Theme.of(context).textTheme.headlineMedium,
+              ),
+            ],
+          ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
@@ -92,3 +94,26 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
+
+class NumberValue extends StatelessWidget {
+  final String name;
+  final Function function;
+  final int counter;
+  const NumberValue({super.key, required this.name, required this.function, required this.counter});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        Icon(
+            Icons.onetwothree,
+          color: Colors.black,
+        ),
+        Text("Test"),
+        Text(counter.toString())
+      ],
+    );
+  }
+}
+
