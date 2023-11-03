@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 
 void main() {
@@ -40,7 +42,8 @@ class _MyHomePageState extends State<MyHomePage> {
       _counter++;
     });
   }
-  void _decrementCounter(){
+
+  void _decrementCounter() {
     setState(() {
       _counter--;
     });
@@ -50,59 +53,68 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Theme
-              .of(context)
-              .colorScheme
-              .inversePrimary,
+          backgroundColor: Theme.of(context).colorScheme.inversePrimary,
           title: Text(widget.title),
         ),
-        body: Center(
+        body: Padding(
+          padding: const EdgeInsets.all(8.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              NumberValue(name: "Dezimal", function: (a) {return a.toString();}, counter: _counter),
-              NumberValue(name: "Hex", function: (a) {return a.toRadixString(16).toUpperCase();}, counter: _counter),
-              NumberValue(name: "Oct", function: (a) {return a.toRadixString(8);}, counter: _counter),
-              NumberValue(name: "Binary", function: (a) {return a.toRadixString(2);}, counter: _counter),
+              NumberValue(
+                  name: "Dezimal",
+                  function: (a) {
+                    return a.toString();
+                  },
+                  counter: _counter),
+              Divider(color: Colors.black, thickness: 1),
+              NumberValue(
+                  name: "Hex",
+                  function: (a) {
+                    return a.toRadixString(16).toUpperCase();
+                  },
+                  counter: _counter),
+              Divider(color: Colors.black, thickness: 1),
+              NumberValue(
+                  name: "Oct",
+                  function: (a) {
+                    return a.toRadixString(8);
+                  },
+                  counter: _counter),
+              Divider(color: Colors.black, thickness: 1),
+              NumberValue(
+                  name: "Binary",
+                  function: (a) {
+                    return a.toRadixString(2);
+                  },
+                  counter: _counter),
               const Text(
                 'Decimal',
               ),
               Text(
                 '$_counter',
-                style: Theme
-                    .of(context)
-                    .textTheme
-                    .headlineMedium,
+                style: Theme.of(context).textTheme.headlineMedium,
               ),
               const Text(
                 'Binary',
               ),
               Text(
                 _counter.toRadixString(2),
-                style: Theme
-                    .of(context)
-                    .textTheme
-                    .headlineMedium,
+                style: Theme.of(context).textTheme.headlineMedium,
               ),
               const Text(
                 'Hexadecimal',
               ),
               Text(
                 _counter.toRadixString(16).toUpperCase(),
-                style: Theme
-                    .of(context)
-                    .textTheme
-                    .headlineMedium,
+                style: Theme.of(context).textTheme.headlineMedium,
               ),
               const Text(
                 'Octal',
               ),
               Text(
                 _counter.toRadixString(8).toUpperCase(),
-                style: Theme
-                    .of(context)
-                    .textTheme
-                    .headlineMedium,
+                style: Theme.of(context).textTheme.headlineMedium,
               ),
             ],
           ),
@@ -114,18 +126,16 @@ class _MyHomePageState extends State<MyHomePage> {
               tooltip: 'Increment',
               child: const Icon(Icons.add),
             ),
-
             FloatingActionButton(
               onPressed: _decrementCounter,
               tooltip: 'Decrement',
               child: const Icon(Icons.remove),
             ),
           ],
-
         )
 
-      // This trailing comma makes auto-formatting nicer for build methods.
-    );
+        // This trailing comma makes auto-formatting nicer for build methods.
+        );
   }
 }
 
@@ -133,21 +143,30 @@ class NumberValue extends StatelessWidget {
   final String name;
   final Function function;
   final int counter;
-  const NumberValue({super.key, required this.name, required this.function, required this.counter});
+
+  const NumberValue(
+      {super.key,
+      required this.name,
+      required this.function,
+      required this.counter});
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        Icon(
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Icon(
             Icons.onetwothree,
-          color: Colors.black,
-        ),
-        Text(name),
-        Text(function(counter))
-      ],
+            color: Colors.black,
+            size: 60,
+          ),
+
+          Expanded(child: Text(name, style: Theme.of(context).textTheme.headlineMedium,), flex: 5),
+          Text(function(counter), style: Theme.of(context).textTheme.headlineMedium,)
+        ],
+      ),
     );
   }
 }
-
