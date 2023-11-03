@@ -16,10 +16,13 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.light(primary:const Color(0xffff8fab), secondary:const Color(0xffffb3c6)),
+        colorScheme: const ColorScheme.light(
+            onPrimary: Colors.black,
+            primary: Color(0xffffb3c6),
+            secondary: Color(0xffff8fab)),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Scientific Calculator'),
+      home: const MyHomePage(title: 'Scientific Counter'),
     );
   }
 }
@@ -42,16 +45,19 @@ class _MyHomePageState extends State<MyHomePage> {
       _counter++;
     });
   }
-  void _decrementCounter(){
+
+  void _decrementCounter() {
     setState(() {
       _counter--;
     });
   }
-void _resetCounter() {
+
+  void _resetCounter() {
     setState(() {
       _counter = 0;
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,14 +68,22 @@ void _resetCounter() {
         body: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               NumberValue(
-                  name: "Dezimal",
+                  name: "Decimal",
                   function: (a) {
                     return a.toString();
                   },
                   counter: _counter),
+              Divider(color: Colors.black, thickness: 1),
+              NumberValue(
+                  name: "Binary",
+                  function: (a) {
+                    return a.toRadixString(2);
+                  },
+                  counter: _counter),
+              icons:
               Divider(color: Colors.black, thickness: 1),
               NumberValue(
                   name: "Hex",
@@ -84,14 +98,6 @@ void _resetCounter() {
                     return a.toRadixString(8);
                   },
                   counter: _counter),
-              Divider(color: Colors.black, thickness: 1),
-              NumberValue(
-                  name: "Binary",
-                  function: (a) {
-                    return a.toRadixString(2);
-                  },
-                  counter: _counter),
-
             ],
           ),
         ),
@@ -122,8 +128,8 @@ void _resetCounter() {
           ),
         )
 
-      // This trailing comma makes auto-formatting nicer for build methods.
-    );
+        // This trailing comma makes auto-formatting nicer for build methods.
+        );
   }
 }
 
@@ -152,12 +158,18 @@ class NumberValue extends StatelessWidget {
             color: Colors.black,
             size: 60,
           ),
-
-          Expanded(child: Text(name, style: Theme.of(context).textTheme.headlineMedium,), flex: 5),
-          Text(function(counter), style: Theme.of(context).textTheme.headlineMedium,)
+          Expanded(
+              child: Text(
+                name,
+                style: Theme.of(context).textTheme.headlineMedium,
+              ),
+              flex: 5),
+          Text(
+            function(counter),
+            style: Theme.of(context).textTheme.headlineMedium,
+          )
         ],
       ),
     );
   }
 }
-
