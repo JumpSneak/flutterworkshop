@@ -40,7 +40,14 @@ class _MyHomePageState extends State<MyHomePage> {
       _counter++;
     });
   }
-  void _decrementCounter(){
+
+  void _resetCounter() {
+    setState(() {
+      _counter = 0;
+    });
+  }
+
+  void _decrementCounter() {
     setState(() {
       _counter--;
     });
@@ -50,10 +57,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Theme
-              .of(context)
-              .colorScheme
-              .inversePrimary,
+          backgroundColor: Theme.of(context).colorScheme.inversePrimary,
           title: Text(widget.title),
         ),
         body: Center(
@@ -65,63 +69,61 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               Text(
                 '$_counter',
-                style: Theme
-                    .of(context)
-                    .textTheme
-                    .headlineMedium,
+                style: Theme.of(context).textTheme.headlineMedium,
               ),
               const Text(
                 'Binary',
               ),
               Text(
                 _counter.toRadixString(2),
-                style: Theme
-                    .of(context)
-                    .textTheme
-                    .headlineMedium,
+                style: Theme.of(context).textTheme.headlineMedium,
               ),
               const Text(
                 'Hexadecimal',
               ),
               Text(
                 _counter.toRadixString(16).toUpperCase(),
-                style: Theme
-                    .of(context)
-                    .textTheme
-                    .headlineMedium,
+                style: Theme.of(context).textTheme.headlineMedium,
               ),
               const Text(
                 'Octal',
               ),
               Text(
                 _counter.toRadixString(8).toUpperCase(),
-                style: Theme
-                    .of(context)
-                    .textTheme
-                    .headlineMedium,
+                style: Theme.of(context).textTheme.headlineMedium,
               ),
             ],
           ),
         ),
-        floatingActionButton: Row(
-          children: [
-            FloatingActionButton(
-              onPressed: _incrementCounter,
-              tooltip: 'Increment',
-              child: const Icon(Icons.add),
-            ),
-
-            FloatingActionButton(
-              onPressed: _decrementCounter,
-              tooltip: 'Decrement',
-              child: const Icon(Icons.remove),
-            ),
-          ],
-
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        floatingActionButton: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              FloatingActionButton(
+                onPressed: _decrementCounter,
+                tooltip: 'Decrement',
+                child: const Icon(Icons.remove),
+              ),
+              FloatingActionButton(
+                onPressed: _resetCounter,
+                tooltip: 'Reset',
+                child: const Icon(Icons.replay),
+              ),
+              FloatingActionButton(
+                onPressed: _incrementCounter,
+                tooltip: 'Increment',
+                child: const Icon(
+                  Icons.add,
+                ),
+              )
+            ],
+          ),
         )
 
-      // This trailing comma makes auto-formatting nicer for build methods.
-    );
+        // This trailing comma makes auto-formatting nicer for build methods.
+        );
   }
 }
 
@@ -129,7 +131,12 @@ class NumberValue extends StatelessWidget {
   final String name;
   final Function function;
   final int counter;
-  const NumberValue({super.key, required this.name, required this.function, required this.counter});
+
+  const NumberValue(
+      {super.key,
+      required this.name,
+      required this.function,
+      required this.counter});
 
   @override
   Widget build(BuildContext context) {
@@ -137,7 +144,7 @@ class NumberValue extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         Icon(
-            Icons.onetwothree,
+          Icons.onetwothree,
           color: Colors.black,
         ),
         Text("Test"),
@@ -146,4 +153,3 @@ class NumberValue extends StatelessWidget {
     );
   }
 }
-
