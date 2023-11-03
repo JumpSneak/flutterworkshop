@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xffffe5ec)),
+        colorScheme: ColorScheme.light(primary:const Color(0xffff8fab), secondary:const Color(0xffffb3c6)),
         useMaterial3: true,
       ),
       home: const MyHomePage(title: 'Scientific Calculator'),
@@ -57,7 +57,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+          backgroundColor: Theme.of(context).colorScheme.secondary,
           title: Text(widget.title),
         ),
         body: Center(
@@ -143,11 +143,11 @@ class NumberValue extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        Icon(
+        const Icon(
           Icons.onetwothree,
           color: Colors.black,
         ),
-        Text("Test"),
+        const Text("Test"),
         Text(counter.toString())
       ],
     );
