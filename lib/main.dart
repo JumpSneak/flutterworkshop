@@ -60,6 +60,7 @@ class _MyHomePageState extends State<MyHomePage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
+              NumberValue(name: "test1", function: (a) {return a;}, counter: _counter),
               const Text(
                 'Decimal',
               ),
