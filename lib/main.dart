@@ -131,12 +131,14 @@ class NumberValue extends StatelessWidget {
   final String name;
   final Function function;
   final int counter;
-
+  final Icons icons;
   const NumberValue(
       {super.key,
       required this.name,
       required this.function,
-      required this.counter});
+      required this.counter,
+      icons = Icons.onetwothree
+      });
 
   @override
   Widget build(BuildContext context) {
