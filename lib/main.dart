@@ -83,7 +83,6 @@ class _MyHomePageState extends State<MyHomePage> {
                     return a.toRadixString(2);
                   },
                   counter: _counter),
-              icons:
               Divider(color: Colors.black, thickness: 1),
               NumberValue(
                   name: "Hex",
@@ -154,7 +153,7 @@ class NumberValue extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Icon(
-            Icons.onetwothree,
+            icons,
             color: Colors.black,
             size: 60,
           ),
