@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 
 void main() {
@@ -40,19 +42,16 @@ class _MyHomePageState extends State<MyHomePage> {
       _counter++;
     });
   }
-
-  void _resetCounter() {
-    setState(() {
-      _counter = 0;
-    });
-  }
-
-  void _decrementCounter() {
+  void _decrementCounter(){
     setState(() {
       _counter--;
     });
   }
-
+void _resetCounter() {
+    setState(() {
+      _counter = 0;
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,10 +59,38 @@ class _MyHomePageState extends State<MyHomePage> {
           backgroundColor: Theme.of(context).colorScheme.secondary,
           title: Text(widget.title),
         ),
-        body: Center(
+        body: Padding(
+          padding: const EdgeInsets.all(8.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
+              NumberValue(
+                  name: "Dezimal",
+                  function: (a) {
+                    return a.toString();
+                  },
+                  counter: _counter),
+              Divider(color: Colors.black, thickness: 1),
+              NumberValue(
+                  name: "Hex",
+                  function: (a) {
+                    return a.toRadixString(16).toUpperCase();
+                  },
+                  counter: _counter),
+              Divider(color: Colors.black, thickness: 1),
+              NumberValue(
+                  name: "Oct",
+                  function: (a) {
+                    return a.toRadixString(8);
+                  },
+                  counter: _counter),
+              Divider(color: Colors.black, thickness: 1),
+              NumberValue(
+                  name: "Binary",
+                  function: (a) {
+                    return a.toRadixString(2);
+                  },
+                  counter: _counter),
               const Text(
                 'Decimal',
               ),
@@ -122,8 +149,8 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         )
 
-        // This trailing comma makes auto-formatting nicer for build methods.
-        );
+      // This trailing comma makes auto-formatting nicer for build methods.
+    );
   }
 }
 
@@ -140,16 +167,22 @@ class NumberValue extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        const Icon(
-          Icons.onetwothree,
-          color: Colors.black,
-        ),
-        const Text("Test"),
-        Text(counter.toString())
-      ],
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Icon(
+            Icons.onetwothree,
+            color: Colors.black,
+            size: 60,
+          ),
+
+          Expanded(child: Text(name, style: Theme.of(context).textTheme.headlineMedium,), flex: 5),
+          Text(function(counter), style: Theme.of(context).textTheme.headlineMedium,)
+        ],
+      ),
     );
   }
 }
+
