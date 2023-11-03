@@ -124,3 +124,26 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
+
+class NumberValue extends StatelessWidget {
+  final String name;
+  final Function function;
+  final int counter;
+  const NumberValue({super.key, required this.name, required this.function, required this.counter});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        Icon(
+            Icons.onetwothree,
+          color: Colors.black,
+        ),
+        Text("Test"),
+        Text(counter.toString())
+      ],
+    );
+  }
+}
+
